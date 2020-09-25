@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BlinkOpenAPI",
+        "repositoryURL": "https://github.com/grigorye/BlinkOpenAPI-Swift",
+        "state": {
+          "branch": "master",
+          "revision": "ce96f24e13fb9d8ef995c5684cccc7a351d25fcc",
+          "version": null
+        }
+      },
+      {
+        "package": "GETracing",
+        "repositoryURL": "https://github.com/grigorye/GETracing",
+        "state": {
+          "branch": "master",
+          "revision": "29dc7fb921802bc55f6c8e2cfc310c9c0b38f535",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
