@@ -8,14 +8,12 @@ extension BlinkController {
     public typealias VerifyPinResponse = BlinkOpenAPI.VerifyPinResponse
     
     public func verifyPin(pin: String) -> AnyPublisher<VerifyPinResponse, Error> {
-        let request = LoginRequest(uniqueId: uniqueId, password: password, email: email)
-        return
-            BlinkDefaultAPI
-            .login(loginRequest: request)
-            .flatMap { loginResponse in
+        
+        authenticated()
+            .flatMap { authenticatedAccount in
                 BlinkDefaultAPI.verifyPin(
-                    accountID: loginResponse.account.id,
-                    clientID: loginResponse.client.id,
+                    accountID: authenticatedAccount.accountID,
+                    clientID: authenticatedAccount.clientID,
                     verifyPinRequest: VerifyPinRequest(pin: pin)
                 )
             }
