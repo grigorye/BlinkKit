@@ -11,16 +11,6 @@ extension BlinkController {
     
     func loggedIn() -> AnyPublisher<LoggedIn, Error> {
         authenticated()
-            .filter { authenticatedAccount -> Bool in
-                _ = x$(authenticatedAccount)
-                let tier = authenticatedAccount.tier
-                let authenticationToken = authenticatedAccount.authenticationToken
-                BlinkOpenAPIAPI.basePath = "https://rest-\(tier).immedia-semi.com"
-                BlinkOpenAPIAPI.customHeaders = [
-                    "TOKEN_AUTH": authenticationToken
-                ]
-                return true
-            }
             .map { authenticatedAccount in
                 LoggedIn(
                     accountID: authenticatedAccount.accountID
@@ -29,7 +19,7 @@ extension BlinkController {
             .eraseToAnyPublisher()
     }
     
-    private func authenticated() -> AnyPublisher<AuthenticatedAccount, Error> {
+    func authenticated() -> AnyPublisher<AuthenticatedAccount, Error> {
         authenticationTokenStorage
             .load
             .flatMap { loaded -> AnyPublisher<AuthenticatedAccount, Error> in
@@ -42,6 +32,16 @@ extension BlinkController {
             .tryCatch { error -> AnyPublisher<AuthenticatedAccount, Error> in
                 _ = x$(error)
                 return newlyLoggedInSaved()
+            }
+            .filter { authenticatedAccount -> Bool in
+                _ = x$(authenticatedAccount)
+                let tier = authenticatedAccount.tier
+                let authenticationToken = authenticatedAccount.authenticationToken
+                BlinkOpenAPIAPI.basePath = "https://rest-\(tier).immedia-semi.com"
+                BlinkOpenAPIAPI.customHeaders = [
+                    "TOKEN_AUTH": authenticationToken
+                ]
+                return true
             }
             .eraseToAnyPublisher()
     }
@@ -56,6 +56,12 @@ extension BlinkController {
     }
     
     private func newlyLoggedIn() -> AnyPublisher<AuthenticatedAccount, Error> {
+        guard let password = password else {
+            enum Error: Swift.Error {
+                case needLoginButNoPasswordProvided
+            }
+            return Fail(error: Error.needLoginButNoPasswordProvided).eraseToAnyPublisher()
+        }
         let request = LoginRequest(uniqueId: uniqueId, password: password, email: email)
         return
             BlinkDefaultAPI
@@ -63,6 +69,7 @@ extension BlinkController {
             .map { loginResponse in
                 let authenticatedAccount = AuthenticatedAccount(
                     accountID: loginResponse.account.id,
+                    clientID: loginResponse.client.id,
                     authenticationToken: loginResponse.authtoken.authtoken,
                     tier: loginResponse.region.tier
                 )
