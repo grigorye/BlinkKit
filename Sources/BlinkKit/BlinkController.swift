@@ -18,6 +18,7 @@ class URLSessionRequestBuilderFactory: RequestBuilderFactory {
 
 public struct AuthenticatedAccount: Codable {
     var accountID: Int
+    var clientID: Int
     var authenticationToken: String
     var tier: String
 }
@@ -31,10 +32,10 @@ public struct BlinkController {
     public let uniqueId = "6437737B-41DD-4810-87BB-3DAB28C3C3FE"
     
     public let email: String
-    public let password: String
+    public let password: String?
     public let authenticationTokenStorage: AuthenticationTokenStorage
     
-    public init(email: String, password: String, authenticationTokenStorage: AuthenticationTokenStorage) {
+    public init(email: String, password: String?, authenticationTokenStorage: AuthenticationTokenStorage) {
         self.email = email
         self.password = password
         self.authenticationTokenStorage = authenticationTokenStorage
