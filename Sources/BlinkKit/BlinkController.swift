@@ -3,19 +3,6 @@ import Combine
 import Foundation.NSURL
 import GETracing
 
-class URLSessionRequestBuilderFactory: RequestBuilderFactory {
-    func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type {
-        URLSessionRequestBuilder<T>.self
-    }
-    
-    func getBuilder<T: Decodable>() -> RequestBuilder<T>.Type {
-        if case is URL.Type = T.self {
-            return URLSessionRequestBuilder<T>.self
-        }
-        return URLSessionDecodableRequestBuilder<T>.self
-    }
-}
-
 public struct AuthenticatedAccount: Codable {
     var accountID: Int
     var clientID: Int
@@ -40,6 +27,6 @@ public struct BlinkController {
         self.password = password
         self.authenticationTokenStorage = authenticationTokenStorage
         
-        BlinkOpenAPIAPI.requestBuilderFactory = URLSessionRequestBuilderFactory()
+        BlinkOpenAPIAPI.requestBuilderFactory = CustomURLSessionRequestBuilderFactory()
     }
 }
