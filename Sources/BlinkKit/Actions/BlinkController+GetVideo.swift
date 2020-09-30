@@ -15,7 +15,7 @@ extension BlinkController {
                 BlinkDefaultAPI.getVideo(media: media)
             }
             .map { url in
-                VideoResponse(url: x$(url))
+                VideoResponse(url: url)
             }
             .eraseToAnyPublisher()
     }

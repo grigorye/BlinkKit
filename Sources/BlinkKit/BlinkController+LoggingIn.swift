@@ -34,7 +34,6 @@ extension BlinkController {
                 return newlyLoggedInSaved()
             }
             .filter { authenticatedAccount -> Bool in
-                _ = x$(authenticatedAccount)
                 let tier = authenticatedAccount.tier
                 let authenticationToken = authenticatedAccount.authenticationToken
                 BlinkOpenAPIAPI.basePath = "https://rest-\(tier).immedia-semi.com"
