@@ -5,10 +5,6 @@ import GETracing
 
 extension BlinkController {
     
-    public struct VideoResponse: Codable {
-        let url: URL
-    }
-    
     public func getVideo(media: String) -> AnyPublisher<VideoResponse, Error> {
         loggedIn()
             .flatMap { _ in
@@ -19,4 +15,8 @@ extension BlinkController {
             }
             .eraseToAnyPublisher()
     }
+}
+
+public struct VideoResponse: Codable {
+    public let url: URL
 }
