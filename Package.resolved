@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/grigorye/BlinkOpenAPI-Swift",
         "state": {
           "branch": "master",
-          "revision": "e84e593a33f34e186bca7671274d93cf95073ab8",
+          "revision": "b86e4d5d7800565d82601f662156b0fb1954bc88",
           "version": null
         }
       },
@@ -17,6 +17,15 @@
           "branch": "master",
           "revision": "29dc7fb921802bc55f6c8e2cfc310c9c0b38f535",
           "version": null
+        }
+      },
+      {
+        "package": "OpenCombine",
+        "repositoryURL": "https://github.com/OpenCombine/OpenCombine.git",
+        "state": {
+          "branch": null,
+          "revision": "915a7efaf596058f9867ba76b08339740c47452e",
+          "version": "0.10.1"
         }
       }
     ]

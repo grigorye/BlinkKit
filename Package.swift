@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -16,6 +16,7 @@ let package = Package(
     dependencies: [
         .package(name: "BlinkOpenAPI", url: "https://github.com/grigorye/BlinkOpenAPI-Swift", .branch("master")),
         .package(url: "https://github.com/grigorye/GETracing", .branch("master")),
+        .package(url: "https://github.com/OpenCombine/OpenCombine.git", from: "0.10.1"),
     ],
     targets: [
         .target(
@@ -23,6 +24,7 @@ let package = Package(
             dependencies: [
                 "BlinkOpenAPI",
                 "GETracing",
+                .product(name: "OpenCombine", package: "OpenCombine", condition: .when(platforms: [.linux])),
             ]
         ),
         .testTarget(
