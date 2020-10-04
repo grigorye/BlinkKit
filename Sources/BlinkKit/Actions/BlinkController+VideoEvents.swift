@@ -4,9 +4,7 @@ import Foundation.NSDate
 
 extension BlinkController {
     
-    public typealias VideoEventsResponse = BlinkOpenAPI.VideoEvents
-    
-    public func videoEvents(page: Int, since sinceDate: Date) -> AnyPublisher<VideoEventsResponse, Error> {
+    public func videoEvents(page: Int, since sinceDate: Date) -> AnyPublisher<VideoEvents, Error> {
         loggedIn()
             .flatMap { loginResponse in
                 BlinkDefaultAPI.getVideoEvents(
@@ -16,3 +14,6 @@ extension BlinkController {
             .eraseToAnyPublisher()
     }
 }
+
+public typealias VideoEvents = BlinkOpenAPI.VideoEvents
+public typealias Media = BlinkOpenAPI.Media
