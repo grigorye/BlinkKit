@@ -1,5 +1,10 @@
 import BlinkOpenAPI
-import Foundation.NSURL
+import Foundation
+import GETracing
+
+#if os(Linux)
+    import FoundationNetworking
+#endif
 
 class CustomURLSessionDecodableRequestBuilder<T>: URLSessionDecodableRequestBuilder<T> where T: Decodable {
     

@@ -1,7 +1,12 @@
 import BlinkOpenAPI
-import Combine
-import Foundation.NSURL
+import Foundation
 import GETracing
+
+#if os(Linux)
+    import OpenCombine
+#else
+    import Combine
+#endif
 
 extension BlinkController {
     
@@ -24,7 +29,7 @@ extension BlinkController {
             .load
             .flatMap { loaded -> AnyPublisher<AuthenticatedAccount, Error> in
                 if let loaded = loaded {
-                    return Result.Publisher(loaded).eraseToAnyPublisher()
+                    return Result<AuthenticatedAccount, Error>.Publisher(loaded).eraseToAnyPublisher()
                 } else {
                     return newlyLoggedInSaved()
                 }

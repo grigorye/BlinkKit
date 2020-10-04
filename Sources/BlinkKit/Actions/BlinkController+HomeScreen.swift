@@ -1,5 +1,10 @@
 import BlinkOpenAPI
-import Combine
+
+#if os(Linux)
+    import OpenCombine
+#else
+    import Combine
+#endif
 
 extension BlinkController {
     

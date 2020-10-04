@@ -1,5 +1,5 @@
 import BlinkOpenAPI
-import Foundation.NSURL
+import Foundation
 
 class CustomURLSessionRequestBuilderFactory: RequestBuilderFactory {
     

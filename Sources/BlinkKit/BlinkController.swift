@@ -1,7 +1,11 @@
 import BlinkOpenAPI
-import Combine
-import Foundation.NSURL
-import GETracing
+import Foundation
+
+#if os(Linux)
+    import OpenCombine
+#else
+    import Combine
+#endif
 
 public struct AuthenticatedAccount: Codable {
     var accountID: Int

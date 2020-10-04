@@ -1,6 +1,11 @@
 import BlinkOpenAPI
-import Combine
-import Foundation.NSDate
+import Foundation
+
+#if os(Linux)
+    import OpenCombine
+#else
+    import Combine
+#endif
 
 extension BlinkController {
     

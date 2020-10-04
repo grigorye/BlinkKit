@@ -1,7 +1,12 @@
 import BlinkOpenAPI
-import Combine
-import Foundation.NSURL
+import Foundation
 import GETracing
+
+#if os(Linux)
+    import OpenCombine
+#else
+    import Combine
+#endif
 
 extension BlinkController {
     
