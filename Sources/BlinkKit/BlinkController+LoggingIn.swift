@@ -66,7 +66,7 @@ extension BlinkController {
             }
             return Fail(error: Error.needLoginButNoPasswordProvided).eraseToAnyPublisher()
         }
-        let request = LoginRequest(uniqueId: uniqueId, password: password, email: email)
+        let request = LoginRequest(uniqueId: uniqueId, password: password, email: email, reauth: reauth)
         return
             BlinkDefaultAPI
             .login(loginRequest: request)

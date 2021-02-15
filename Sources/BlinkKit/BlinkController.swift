@@ -24,11 +24,13 @@ public struct BlinkController {
     
     public let email: String
     public let password: String?
+    public let reauth: Bool
     public let authenticationTokenStorage: AuthenticationTokenStorage
     
-    public init(email: String, password: String?, authenticationTokenStorage: AuthenticationTokenStorage) {
+    public init(email: String, password: String?, reauth: Bool, authenticationTokenStorage: AuthenticationTokenStorage) {
         self.email = email
         self.password = password
+        self.reauth = reauth
         self.authenticationTokenStorage = authenticationTokenStorage
         
         BlinkOpenAPIAPI.requestBuilderFactory = CustomURLSessionRequestBuilderFactory()
