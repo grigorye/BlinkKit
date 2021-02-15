@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/OpenCombine/OpenCombine.git",
         "state": {
           "branch": null,
-          "revision": "915a7efaf596058f9867ba76b08339740c47452e",
-          "version": "0.10.1"
+          "revision": "28993ae57de5a4ea7e164787636cafad442d568c",
+          "version": "0.12.0"
         }
       }
     ]
