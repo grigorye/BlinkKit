@@ -72,10 +72,10 @@ extension BlinkController {
             .login(loginRequest: request)
             .map { loginResponse in
                 let authenticatedAccount = AuthenticatedAccount(
-                    accountID: loginResponse.account.id,
-                    clientID: loginResponse.client.id,
-                    authenticationToken: loginResponse.authtoken.authtoken,
-                    tier: loginResponse.region.tier
+                    accountID: loginResponse.account.accountId,
+                    clientID: loginResponse.account.clientId,
+                    authenticationToken: loginResponse.auth.token,
+                    tier: loginResponse.account.tier
                 )
                 return authenticatedAccount
             }
