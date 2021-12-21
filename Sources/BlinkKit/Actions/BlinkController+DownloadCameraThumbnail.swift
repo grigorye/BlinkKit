@@ -1,6 +1,8 @@
-import BlinkOpenAPI
 import Foundation
 import GETracing
+
+import class BlinkOpenAPI.BlinkDefaultAPI
+import struct BlinkOpenAPI.HomeScreenResponse
 
 #if os(Linux)
     import OpenCombine

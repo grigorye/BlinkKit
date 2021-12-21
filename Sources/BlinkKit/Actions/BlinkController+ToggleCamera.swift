@@ -1,5 +1,7 @@
-import BlinkOpenAPI
 import Foundation
+
+import class BlinkOpenAPI.BlinkDefaultAPI
+import struct BlinkOpenAPI.InitialCommandResponse
 
 #if os(Linux)
     import OpenCombine

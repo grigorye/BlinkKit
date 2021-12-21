@@ -1,5 +1,8 @@
-import BlinkOpenAPI
 import Foundation
+
+import class BlinkOpenAPI.BlinkDefaultAPI
+import struct BlinkOpenAPI.Media
+import struct BlinkOpenAPI.VideoEvents
 
 #if os(Linux)
     import OpenCombine

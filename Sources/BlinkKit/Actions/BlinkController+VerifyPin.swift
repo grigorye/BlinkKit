@@ -1,5 +1,8 @@
-import BlinkOpenAPI
 import Foundation
+
+import class BlinkOpenAPI.BlinkDefaultAPI
+import struct BlinkOpenAPI.VerifyPinRequest
+import struct BlinkOpenAPI.VerifyPinResponse
 
 #if os(Linux)
     import OpenCombine
