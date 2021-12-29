@@ -6,7 +6,17 @@ import GETracing
     import FoundationNetworking
 #endif
 
-class CustomURLSessionRequestBuilder<T>: URLSessionRequestBuilder<T> {
+class CustomURLSessionRequestBuilderX<T>: URLSessionRequestBuilder<T> {
+    
+    required init(method: String, URLString: String, parameters: [String: Any]?, headers: [String: String] = [:]) {
+        super.init(method: method, URLString: URLString, parameters: parameters, headers: headers)
+        taskDidReceiveChallenge = { (_, _, _) in
+            (.performDefaultHandling, nil)
+        }
+    }
+}
+
+class CustomURLSessionDecodableRequestBuilderX<T>: URLSessionDecodableRequestBuilder<T> where T: Decodable {
     
     required init(method: String, URLString: String, parameters: [String: Any]?, headers: [String: String] = [:]) {
         super.init(method: method, URLString: URLString, parameters: parameters, headers: headers)

@@ -2,11 +2,20 @@
   "object": {
     "pins": [
       {
+        "package": "AnyCodable",
+        "repositoryURL": "https://github.com/Flight-School/AnyCodable",
+        "state": {
+          "branch": null,
+          "revision": "b1a7a8a6186f2fcb28f7bda67cfc545de48b3c80",
+          "version": "0.6.2"
+        }
+      },
+      {
         "package": "BlinkOpenAPI",
         "repositoryURL": "https://github.com/grigorye/BlinkOpenAPI-Swift",
         "state": {
           "branch": "master",
-          "revision": "90a72dacacc9556d659e68d50a791dd91f1801b1",
+          "revision": "45eb87ad3065487c1c714b7401e7ce205c0c9cd9",
           "version": null
         }
       },
@@ -15,7 +24,7 @@
         "repositoryURL": "https://github.com/grigorye/GETracing",
         "state": {
           "branch": "master",
-          "revision": "dcec96410d5e15edc79edfc5f1e7ec58aed81b7d",
+          "revision": "86ba1be97e0124475f1d36ff050ec94910abe5e2",
           "version": null
         }
       },
