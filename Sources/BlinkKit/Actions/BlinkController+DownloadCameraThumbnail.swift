@@ -35,7 +35,7 @@ extension BlinkController {
                         .eraseToAnyPublisher()
                 }
                 guard let thumbnail = camera.thumbnail else {
-                    return Result.Publisher(nil).eraseToAnyPublisher()
+                    return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
                 return BlinkDefaultAPI.getThumbnail(media: thumbnail)
                     .map { thumbnail in
