@@ -13,7 +13,7 @@ import struct BlinkOpenAPI.HomeScreenResponse
 extension BlinkController {
     
     public struct DownloadCameraThumbnailResponse: Codable {
-        var url: URL
+        var url: URL?
     }
     
     public func getCameraThumbnail(networkID: Int, cameraID: Int) -> AnyPublisher<DownloadCameraThumbnailResponse, Error> {
@@ -22,7 +22,7 @@ extension BlinkController {
                 BlinkDefaultAPI.homescreen(accountID: authenticatedAccount.accountID)
             }
             .flatMap {
-                (homeScreenResponse: BlinkOpenAPI.HomeScreenResponse) -> AnyPublisher<URL, Error> in
+                (homeScreenResponse: BlinkOpenAPI.HomeScreenResponse) -> AnyPublisher<URL?, Error> in
                 guard
                     let camera = homeScreenResponse.cameras.first(where: {
                         $0.id == cameraID && $0.networkId == networkID
@@ -34,7 +34,14 @@ extension BlinkController {
                     return Fail(error: Error.cameraNotFound(cameraID: cameraID, networkID: networkID))
                         .eraseToAnyPublisher()
                 }
-                return BlinkDefaultAPI.getThumbnail(media: camera.thumbnail)
+                guard let thumbnail = camera.thumbnail else {
+                    return Result.Publisher(nil).eraseToAnyPublisher()
+                }
+                return BlinkDefaultAPI.getThumbnail(media: thumbnail)
+                    .map { thumbnail in
+                        return thumbnail
+                    }
+                    .eraseToAnyPublisher()
             }
             .map { url in
                 DownloadCameraThumbnailResponse(url: x$(url))
