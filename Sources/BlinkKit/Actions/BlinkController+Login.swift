@@ -1,12 +1,6 @@
-#if os(Linux)
-    import OpenCombine
-#else
-    import Combine
-#endif
-
-extension BlinkController {
+extension BlinkAuthenticator {
     
-    public func login() -> AnyPublisher<AuthenticatedAccount, Error> {
-        newlyLoggedInSaved()
+    public func login() async throws -> AuthenticatedAccount {
+        try await newlyLoggedInSaved()
     }
 }

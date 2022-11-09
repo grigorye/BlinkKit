@@ -3,37 +3,23 @@ import Foundation
 import class BlinkOpenAPI.BlinkDefaultAPI
 import struct BlinkOpenAPI.InitialCommandResponse
 
-#if os(Linux)
-    import OpenCombine
-#else
-    import Combine
-#endif
-
 extension BlinkController {
     
-    public func enableCamera(networkID: Int, cameraID: Int) -> AnyPublisher<InitialCommandResponse, Error> {
-        loggedIn()
-            .flatMap { _ in
-                BlinkDefaultAPI.enableCamera(networkID: networkID, cameraID: cameraID)
-            }
-            .eraseToAnyPublisher()
+    public func enableCamera(networkID: Int, cameraID: Int) async throws -> InitialCommandResponse {
+        try await BlinkDefaultAPI.enableCamera(networkID: networkID, cameraID: cameraID)
     }
     
-    public func disableCamera(networkID: Int, cameraID: Int) -> AnyPublisher<InitialCommandResponse, Error> {
-        loggedIn()
-            .flatMap { _ in
-                BlinkDefaultAPI.disableCamera(networkID: networkID, cameraID: cameraID)
-            }
-            .eraseToAnyPublisher()
+    public func disableCamera(networkID: Int, cameraID: Int) async throws -> InitialCommandResponse {
+        try await BlinkDefaultAPI.disableCamera(networkID: networkID, cameraID: cameraID)
     }
     
     public typealias InitialCommandResponse = BlinkOpenAPI.InitialCommandResponse
     
-    public func toggleCamera(networkID: Int, cameraID: Int, on: Bool) -> AnyPublisher<InitialCommandResponse, Error> {
+    public func toggleCamera(networkID: Int, cameraID: Int, on: Bool) async throws -> InitialCommandResponse {
         if on == true {
-            return enableCamera(networkID: networkID, cameraID: cameraID)
+            return try await enableCamera(networkID: networkID, cameraID: cameraID)
         } else {
-            return disableCamera(networkID: networkID, cameraID: cameraID)
+            return try await disableCamera(networkID: networkID, cameraID: cameraID)
         }
     }
 }

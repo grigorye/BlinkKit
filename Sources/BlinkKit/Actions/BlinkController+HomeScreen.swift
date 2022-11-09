@@ -1,21 +1,11 @@
 import class BlinkOpenAPI.BlinkDefaultAPI
 import struct BlinkOpenAPI.HomeScreenResponse
 
-#if os(Linux)
-    import OpenCombine
-#else
-    import Combine
-#endif
-
 extension BlinkController {
     
     public typealias HomeScreenResponse = BlinkOpenAPI.HomeScreenResponse
     
-    public func homeScreen() -> AnyPublisher<HomeScreenResponse, Error> {
-        loggedIn()
-            .flatMap { authenticatedAccount in
-                BlinkDefaultAPI.homescreen(accountID: authenticatedAccount.accountID)
-            }
-            .eraseToAnyPublisher()
+    public func homeScreen() async throws -> HomeScreenResponse {
+        try await BlinkDefaultAPI.homescreen(accountID: accountID)
     }
 }
