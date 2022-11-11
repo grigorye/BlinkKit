@@ -1,23 +1,11 @@
 import BlinkOpenAPI
 import Foundation
 
-#if os(Linux)
-    import OpenCombine
-#else
-    import Combine
-#endif
-
 extension BlinkController {
     
-    public func getVideo(media: String) -> AnyPublisher<VideoResponse, Error> {
-        loggedIn()
-            .flatMap { _ in
-                BlinkDefaultAPI.getVideo(media: media)
-            }
-            .map { url in
-                VideoResponse(url: url)
-            }
-            .eraseToAnyPublisher()
+    public func getVideo(media: String) async throws -> VideoResponse {
+        let url = try await BlinkDefaultAPI.getVideo(media: media)
+        return VideoResponse(url: url)
     }
 }
 

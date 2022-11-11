@@ -8,8 +8,8 @@ import GETracing
 
 class CustomURLSessionRequestBuilderX<T>: URLSessionRequestBuilder<T> {
     
-    required init(method: String, URLString: String, parameters: [String: Any]?, headers: [String: String] = [:]) {
-        super.init(method: method, URLString: URLString, parameters: parameters, headers: headers)
+    required init(method: String, URLString: String, parameters: [String: Any]?, headers: [String: String] = [:], requiresAuthentication: Bool) {
+        super.init(method: method, URLString: URLString, parameters: parameters, headers: headers, requiresAuthentication: requiresAuthentication)
         taskDidReceiveChallenge = { (_, _, _) in
             (.performDefaultHandling, nil)
         }
@@ -18,8 +18,8 @@ class CustomURLSessionRequestBuilderX<T>: URLSessionRequestBuilder<T> {
 
 class CustomURLSessionDecodableRequestBuilderX<T>: URLSessionDecodableRequestBuilder<T> where T: Decodable {
     
-    required init(method: String, URLString: String, parameters: [String: Any]?, headers: [String: String] = [:]) {
-        super.init(method: method, URLString: URLString, parameters: parameters, headers: headers)
+    required init(method: String, URLString: String, parameters: [String: Any]?, headers: [String: String] = [:], requiresAuthentication: Bool) {
+        super.init(method: method, URLString: URLString, parameters: parameters, headers: headers, requiresAuthentication: requiresAuthentication)
         taskDidReceiveChallenge = { (_, _, _) in
             (.performDefaultHandling, nil)
         }
