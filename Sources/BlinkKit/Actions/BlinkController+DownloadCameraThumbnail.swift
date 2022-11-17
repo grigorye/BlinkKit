@@ -1,5 +1,4 @@
 import Foundation
-import GETracing
 
 import class BlinkOpenAPI.BlinkDefaultAPI
 import struct BlinkOpenAPI.HomeScreenResponse

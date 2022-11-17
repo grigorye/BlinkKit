@@ -1,6 +1,5 @@
 import BlinkOpenAPI
 import Foundation
-import GETracing
 
 #if os(Linux)
     import FoundationNetworking

@@ -14,15 +14,13 @@ let package = Package(
         .library(name: "BlinkKit", targets: ["BlinkKit"])
     ],
     dependencies: [
-        .package(name: "BlinkOpenAPI", url: "https://github.com/grigorye/BlinkOpenAPI-Swift", .branch("main")),
-        .package(url: "https://github.com/grigorye/GETracing", .branch("master")),
+        .package(name: "BlinkOpenAPI", url: "https://github.com/grigorye/BlinkOpenAPI-Swift", .branch("main"))
     ],
     targets: [
         .target(
             name: "BlinkKit",
             dependencies: [
-                "BlinkOpenAPI",
-                "GETracing",
+                "BlinkOpenAPI"
             ]
         ),
         .testTarget(

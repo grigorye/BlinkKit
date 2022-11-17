@@ -1,6 +1,5 @@
 import BlinkOpenAPI
 import Foundation
-import GETracing
 
 public struct AuthenticatedAccount: Codable {
     public var accountID: Int

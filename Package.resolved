@@ -15,16 +15,7 @@
         "repositoryURL": "https://github.com/grigorye/BlinkOpenAPI-Swift",
         "state": {
           "branch": "main",
-          "revision": "28bc3286484223dcde967eb09f22d3ac4518c1be",
-          "version": null
-        }
-      },
-      {
-        "package": "GETracing",
-        "repositoryURL": "https://github.com/grigorye/GETracing",
-        "state": {
-          "branch": "master",
-          "revision": "86ba1be97e0124475f1d36ff050ec94910abe5e2",
+          "revision": "37ba52c4332555269b9d8a023caf4632d9005d75",
           "version": null
         }
       }
