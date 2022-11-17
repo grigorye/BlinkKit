@@ -1,26 +1,26 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.7
 
 import PackageDescription
 
 let package = Package(
     name: "BlinkKit",
     platforms: [
-        .iOS(.v9),
+        .iOS(.v11),
         .macOS(.v10_15),
-        .tvOS(.v9),
-        .watchOS(.v3),
+        .tvOS(.v11),
+        .watchOS(.v4),
     ],
     products: [
         .library(name: "BlinkKit", targets: ["BlinkKit"])
     ],
     dependencies: [
-        .package(name: "BlinkOpenAPI", url: "https://github.com/grigorye/BlinkOpenAPI-Swift", .branch("main"))
+        .package(url: "https://github.com/grigorye/BlinkOpenAPI-Swift", branch: "main")
     ],
     targets: [
         .target(
             name: "BlinkKit",
             dependencies: [
-                "BlinkOpenAPI"
+                .product(name: "BlinkOpenAPI", package: "BlinkOpenAPI-Swift")
             ]
         ),
         .testTarget(
